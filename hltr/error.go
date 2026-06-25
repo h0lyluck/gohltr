@@ -18,7 +18,7 @@ type hltrError struct {
 	fieldErrors map[string]any
 }
 
-func NewFieldError() *hltrError {
+func NewError() *hltrError {
 	return &hltrError{
 		fieldErrors: make(map[string]any),
 	}
