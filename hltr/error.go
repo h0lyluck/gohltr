@@ -7,7 +7,7 @@ import (
 
 type HLTRError interface {
 	Error() string
-	Fields() map[string]string
+	Fields() map[string]any
 	SetMessage(message string)
 	Set(field, err string)
 	HasErrors() bool
