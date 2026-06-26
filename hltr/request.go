@@ -7,7 +7,7 @@ import (
 	"net/http"
 )
 
-func DecodeJSONBody(w http.ResponseWriter, r *http.Request, dst interface{}) error {
+func DecodeJSONBody(r *http.Request, dst interface{}) error {
 	ct := r.Header.Get("Content-Type")
 	if ct != "application/json" {
 		return errors.New("Expected Content-Type application/json got " + ct)
@@ -18,7 +18,7 @@ func DecodeJSONBody(w http.ResponseWriter, r *http.Request, dst interface{}) err
 	return nil
 }
 
-func GetBodyAsString(w http.ResponseWriter, r *http.Request) (string, error) {
+func GetBodyAsString(r *http.Request) (string, error) {
 	if r.Body == nil || r.Body == http.NoBody {
 		return "", nil
 	}
