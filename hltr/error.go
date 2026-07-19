@@ -27,6 +27,10 @@ func (fe *hltrError) Set(field, err string) {
 	fe.fieldErrors[field] = err
 }
 
+func (fe *hltrError) SetNested(field string, err *hltrError) {
+	fe.fieldErrors[field] = err.ToError()
+}
+
 func (fe *hltrError) Error() string {
 	if len(fe.fieldErrors) == 0 {
 		return ""
@@ -53,4 +57,12 @@ func (fe *hltrError) ToHttpError() map[string]any {
 		"message": fe.message,
 		"fields":  fe.fieldErrors,
 	}
+}
+
+func (fe *hltrError) ToError() map[string]any {
+	err := map[string]any{}
+	for k, v := range fe.fieldErrors {
+		err[k] = v
+	}
+	return err
 }
