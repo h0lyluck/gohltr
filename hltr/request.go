@@ -18,6 +18,10 @@ func DecodeJSONBody(r *http.Request, dst interface{}) error {
 	return nil
 }
 
+func DecodeJSONString(s string, dst interface{}) error {
+	return json.Unmarshal([]byte(s), dst)
+}
+
 func GetBodyAsString(r *http.Request) (string, error) {
 	if r.Body == nil || r.Body == http.NoBody {
 		return "", nil
